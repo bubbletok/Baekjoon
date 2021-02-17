@@ -1,29 +1,13 @@
 // DP
 #include <iostream>
 using namespace std;
-
-int combin(int n, int k);
+int arr[30][30];
 
 int main() {
 	int t,n,m;
 	cin >> t;
-	for(int i=0; i<t; i++){
-		cin >> n >> m;
-		if(n==m){
-			cout << 1 << endl;
-		}
-		else{
-			cout << combin(m,n) << endl;
-		}
-	}
-	return 0;
-}
-
-int combin(int n, int k){
-	int arr[30][30];
-	
-	for(int i=0; i<=n; i++){
-		for(int j=0; j<=k; j++){
+    for(int i=0; i<=29; i++){
+		for(int j=0; j<=29; j++){
 			if(j==0 || i==j)
 				arr[i][j] = 1;
 			else{
@@ -31,7 +15,19 @@ int combin(int n, int k){
 			}
 		}
 	}
-	return arr[n][k];
+	for(int i=0; i<t; i++){
+		cin >> n >> m;
+		if(n==m){
+			cout << 1 << endl;
+		}
+		else if(m-n <= n){
+			cout << arr[m][m-n] << endl;
+		}
+		else{
+			cout << arr[m][n] << endl;
+		}
+	}
+	return 0;
 }
 
 // 재귀
